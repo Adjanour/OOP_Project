@@ -1,3 +1,6 @@
+import sys
+
+
 class Movie():
     def __init__(self, title, rating, genre, year, price, tag, description, movieid,ratings):
         self.Title = title
@@ -166,7 +169,7 @@ def InitialDisplay():
         adminDisplay()
 
     else:
-        exit()
+        sys.exit()
 
 
 def CustomerDisplay():
@@ -241,7 +244,7 @@ def ReturnMovie():
 
 def exit():
     print("Goodbye")
-    exit()
+    sys.exit()
 
 def main():
     InitialDisplay()
