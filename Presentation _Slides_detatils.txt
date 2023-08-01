@@ -1,0 +1,100 @@
+1. Introduction:
+ Purpose of Presentation of presentation. Description of problem and process of movie renatl store
+
+2. Explanation of classes: OOP classes used
+
+
+3.Functionality of the code
+
+4. Code metrics and what makes our code the best
+
+5.Future developments of the project
+
+
+
+**Presentation: Movie Rental Store**
+
+Slide 1: **Introduction**
+
+- Welcome everyone to the presentation on the Movie Rental Store project.
+- The purpose of this presentation is to showcase our movie rental store system and its functionalities.
+- We'll take a look at the problem this project addresses and how the process of movie rental is managed.
+
+Slide 2: **Explanation of Classes: OOP Classes Used**
+
+- Our project utilizes Object-Oriented Programming (OOP) concepts with three main classes:
+  - **Movie Class:**
+    - The `Movie` class represents a single movie in our rental store.
+    - Attributes: `Title`, `Rating`, `Genre`, `Year`, `Price`, `Tag`, `Description`, `MovieId`, `Ratings`.
+    - Properties are implemented using Python's getter, setter, and deleter methods.
+    - It also provides a method to get movie details and the movie's price.
+
+  - **Customer Class:**
+    - The `Customer` class represents a customer who can rent movies from our store.
+    - Attributes: `CustomerId`, `FirstName`, `LastName`, `Age`, `Gender`, `Phone`, `MoviePreferences`, `ShoppingCart`.
+    - It has methods to get customer details, full name, add and remove movie preferences, and manage the shopping cart.
+
+  - **RentalStore Class:**
+    - The `RentalStore` class serves as the core of our system, holding movies, customers, and rentals.
+    - It provides methods to add and remove movies and customers, rent and return movies, and retrieve movie and customer details.
+    - It also has a method to get the total number of movies in the store.
+
+Slide 3: **Functionality of the Code**
+
+- Our movie rental store system provides the following key functionalities:
+  - Adding new movies to the store using the `addToStore()` method.
+  - Removing existing movies from the store using the `removeFromStore()` method.
+  - Adding new customers to the store using the `addCustomer()` method.
+  - Removing existing customers from the store using the `removeCustomer()` method.
+  - Renting movies to customers using the `rentMovie()` method, which creates a rental record with details like customer ID, movie, price, and rental duration.
+  - Returning movies using the `returnMovie()` method, which updates the rental record.
+  - Displaying all movies in the store using the `getMovieDetails()` method.
+  - Displaying all customers using the `getCustomers()` method.
+
+Slide 4: **Code Metrics and What Makes Our Code the Best**
+
+- The movie rental store system has several advantages due to its object-oriented design:
+  - **Code Structure and Maintainability:**
+    - The code is organized into classes, making it easier to understand and maintain.
+    - Each class has a clear responsibility, improving code readability.
+    - We can easily add new features or modify existing ones without affecting other parts of the code.
+
+  - **Object-Oriented Design Benefits:**
+    - Encapsulation: Class attributes and methods are encapsulated, providing data protection and abstraction.
+    - Inheritance: We can extend classes and reuse code, e.g., creating specific movie genres.
+    - Polymorphism: Methods like `getMovieDetails()` and `getCustomerDetails()` provide uniform interfaces for different objects.
+
+  - **Reusability and Flexibility:**
+    - Our classes promote reusability, allowing us to add more movies and customers easily.
+    - The system is flexible and can be adapted to various movie rental store scenarios.
+
+Slide 5: **Future Developments of the Project**
+
+- While our movie rental store system is functional, there are exciting possibilities for future developments:
+  - **User Interface Enhancement:**
+    - Develop a user-friendly GUI or web-based interface for a better user experience.
+  - **Database Integration:**
+    - Integrate a database to store movie and customer information persistently.
+    - Implement query capabilities to retrieve data efficiently.
+  - **User Authentication and Security:**
+    - Add user authentication for secure access to the system.
+    - Ensure data privacy and protection of sensitive information.
+  - **Online Rental Platform:**
+    - Extend the system to support online movie rentals and payments.
+    - Implement email notifications for rental updates and reminders.
+
+Slide 6: **Conclusion**
+
+- In conclusion, our movie rental store system showcases the power of Object-Oriented Programming in managing movie rentals.
+- With our well-structured code, we offer a flexible and maintainable solution for a movie rental business.
+- We look forward to exploring future developments to make the movie rental experience even better for our customers.
+
+Slide 7: **Questions and Answers**
+
+- We now open the floor for any questions or feedback you may have about our movie rental store project. Feel free to ask anything!
+
+Slide 8: **Thank You!**
+
+- We appreciate your time and attention during this presentation.
+- Thank you for being a part of our journey in building the Movie Rental Store system.
+- Have a great day!
