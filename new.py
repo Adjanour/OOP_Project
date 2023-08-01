@@ -10,20 +10,26 @@ class Movie:
 
 class RentalStore:
     def __init__(self):
-        self.movies_available = []
-        self.rented_movies = {}
+        self.movies_available = []  # List to store available movie copies
+        self.rented_movies = {}  # Dictionary to track rented movies
 
-    def add_movie(self, movie):
-        self.movies_available.append(movie)
-
+    def add_movie(self, movie, num_copies=1):
+        for _ in range(num_copies):
+            self.movies_available.append(movie)
+        # end of admin section
     def rent_movie(self, customer_name, movie_title):
-        for i in range(len(self.movies_available)):
-            if self.movies_available[i].title == movie_title:
-                self.rented_movies[customer_name] = [self.movies_available.pop(i)]
-                print(f"{customer_name} rented '{movie_title}' successfully!")
-                return
-            
-        print(f"'{movie_title}' is not available for rent.")
+        # Check if the movie is available for rent
+        # Checks and finds all copies of the movie and appends them to the  avaiable_copies list
+        available_copies = [movie for movie in self.movies_available if movie.title == movie_title]
+        if available_copies:
+            self.movies_available.remove(available_copies[0])
+            if customer_name in self.rented_movies:
+                self.rented_movies[customer_name].append(available_copies[0])
+            else:
+                self.rented_movies[customer_name] = [available_copies[0]]
+            print(f"{customer_name} rented '{movie_title}' successfully!")
+        else:
+            print(f"'{movie_title}' is not available for rent.")
 
     def return_movie(self, customer_name, movie_to_return):
         # Check if the customer has any movies rented
@@ -31,18 +37,23 @@ class RentalStore:
             print(f"No movies are currently rented by {customer_name}.")
             return
 
-        # Find the index of the returned movie
-        found_index = -1
-        for i in range(len(self.rented_movies[customer_name])):
-            if self.rented_movies[customer_name][i].title == movie_to_return.title:
-                found_index = i
+        elif customer_name in self.rented_movies:
+            # Find the returned movie in the rented movies list
+            rented_movies = self.rented_movies[customer_name]
+            found_copy = None
+            for movie_copy in rented_movies:
+                if movie_copy.title == movie_to_return.title:
+                    found_copy = movie_copy
+                    break
 
-        # If the returned movie was found, remove it from the list and add it back to inventory
-        if found_index != -1:
-            self.movies_available.append(self.rented_movies[customer_name].pop(found_index))
-            print(f"{customer_name} returned '{movie_to_return.title}' successfully!")
-        else:
-            print(f"No movie with title '{movie_to_return.title}' is rented by {customer_name}.")
+            if found_copy is not None:
+                # Add the returned movie copy back to the available movies list
+                self.movies_available.append(found_copy)
+                # Remove the returned movie copy from the customer's rented movies
+                rented_movies.remove(found_copy)
+                print(f"{customer_name} returned '{found_copy.title}' successfully!")
+            else:
+                print(f"No movie with title '{movie_to_return.title}' is rented by {customer_name}.")
 
 
 class Customer:
@@ -82,15 +93,16 @@ class Customer:
 
 store = RentalStore()
 
-# Add movies
+# Add movies with multiple copies
 while True:
     title = input("Enter the title of the movie (or 'exit' to stop adding movies): ")
     if title.lower() == 'exit':
         break
     genre = input("Enter the genre of the movie: ")
     release_year = int(input("Enter the release year of the movie: "))
+    num_copies = int(input("Enter the number of copies available for rent: "))
     movie = Movie(title, genre, release_year)
-    store.add_movie(movie)
+    store.add_movie(movie, num_copies)
 
 # Rent movies
 customer_name = input("Enter your name: ")
