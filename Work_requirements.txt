@@ -1,0 +1,11 @@
+1.Error handling
+
+2.Logic of the system
+i. Movie renting
+ii. Movie availability
+iii. Customer entering details
+iv. Accessing customers and movies
+v. Inventory of movies to acompany renting and returns
+vi. Payment module
+
+3. Powerpoint Presentation 
