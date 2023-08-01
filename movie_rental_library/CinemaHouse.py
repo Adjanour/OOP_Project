@@ -24,7 +24,7 @@ class Movie():
 
     Example:
         movie = Movie("The Matrix", "PG-13", "Sci-Fi", 1999, "$3.99", "Action", 
-                      "A computer hacker learns the truth about reality.", 101, "8.7/10")
+                "A computer hacker learns the truth about reality.", 101, "8.7/10")
         print(movie.getMovieDetails())
     """
 
