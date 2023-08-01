@@ -49,7 +49,7 @@ for i in range(1,11):
     ratings = random.choice(ratings)
     movieid = i
     Movies.append({"Title":title,"Ratings":ratings,"Rating":rating,"Genre":genre,"Year":year,"Price":price,"Tag":tag,"Description":description,"MovieId":movieid})
-    print(f"RentMovies.addToStore(title ='{title}',rating ='{rating}', genre ='{genre}',year ='{year}',price='{price}',tag ='{tag}',description ='{description}', movieid ={movieid}, ratings='{ratings}')")
+    print(f"RentMovies.addToStore('{title}','{rating}', '{genre}',{year}','{price}','{tag}','{description}','{movieid}', '{ratings}')")
 
 for movie in Movies:
     print("Title:",movie['Title'])

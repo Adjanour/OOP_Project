@@ -21,8 +21,8 @@ for i in range(10):
     gender = random.choice(genders)
     phone_number = random.choice(phone_numbers)
     customer_id = i
-    print(f"RentMovies.addCustomer(first_name = '{first_name}', last_name = '{last_name}',age ='{age}',gender = '{gender}',phone_number = '{phone_number}',customer_id = {customer_id})")
-    data.append({"name":first_name + last_name, "age":age, "gender":gender , "phone_number":phone_number, "customer_id":customer_id})
+    print(f"RentMovies.addCustomer('{first_name}', '{last_name}','{age}','{gender}', '{phone_number}', {customer_id})")
+    data.append({"name":first_name +" "+last_name, "age":age, "gender":gender , "phone_number":phone_number, "customer_id":customer_id})
 
 for customer in data:
     print("Name:",customer['name'])

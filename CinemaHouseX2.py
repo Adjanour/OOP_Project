@@ -96,8 +96,8 @@ class RentalStore():
     def removeFromStore(self, movie):
         self.Movies.remove(movie)
 
-    def addCustomer(self, firstName, lastName, age, phone, customerid):
-        customer = Customer(firstName, lastName, age, phone, customerid)
+    def addCustomer(self, firstName, lastName, age,gender, phone, customerid):
+        customer = Customer(firstName, lastName, age,gender, phone, customerid)
         self.Customers.append(customer)
 
     def removeCustomer(self, customer):
@@ -133,28 +133,27 @@ class RentalStore():
 RentMovies = RentalStore()
 
 # Add movies to the store
-RentMovies.addToStore(title ='The Dark Knight',rating ='18', genre ='Comedy',year ='2016',price='GH₵10.00',tag ='Old',description ='This is a new movie', movieid =1, ratings='100%')
-RentMovies.addToStore(title ='Ariel',rating ='1', genre ='Action',year ='2017',price='GH₵20.00',tag ='New',description ='This is a new movie', movieid =2, ratings='%')
-RentMovies.addToStore(title ='Jungle Story',rating ='1', genre ='Animation',year ='2015',price='GH₵30.00',tag ='New',description ='This is a new movie', movieid =3, ratings='%')
-RentMovies.addToStore(title ='Fight Club',rating ='1', genre ='Action',year ='2014',price='GH₵10.00',tag ='New',description ='This is a new movie', movieid =4, ratings='%')
-RentMovies.addToStore(title ='The Shawshank Redemption',rating ='1', genre ='Horror',year ='2015',price='GH₵20.00',tag ='Old',description ='This is a new movie', movieid =5, ratings='%')
-RentMovies.addToStore(title ='The Shawshank Redemption',rating ='1', genre ='Drama',year ='2015',price='GH₵20.00',tag ='New',description ='This is an old movie', movieid =6, ratings='%')
-RentMovies.addToStore(title ='The Dark Knight',rating ='1', genre ='Fantasy',year ='2017',price='GH₵40.00',tag ='New',description ='This is a new movie', movieid =7, ratings='%')
-RentMovies.addToStore(title ='The Shawshank Redemption',rating ='1', genre ='Romance',year ='2016',price='GH₵40.00',tag ='New',description ='This is an old movie', movieid =8, ratings='%')
-RentMovies.addToStore(title ='The Dark Knight',rating ='1', genre ='Fantasy',year ='2018',price='GH₵20.00',tag ='New',description ='This is a new movie', movieid =9, ratings='%')
-RentMovies.addToStore(title ='The Matrix',rating ='1', genre ='Romance',year ='2019',price='GH₵35.00',tag ='New',description ='This is an old movie', movieid =10, ratings='%')
-
+RentMovies.addToStore('The Godfather','PG', 'Fantasy','2018','GH₵5.00','New','This is an old movie','1', '90%')
+RentMovies.addToStore('Ariel','P', 'Fantasy','2018','GH₵10.00','New','This is a new movie','2', '9')
+RentMovies.addToStore('Pulp Fiction','P', 'Adventure','2013','GH₵5.00','Old','This is an old movie','3', '9')
+RentMovies.addToStore('The Shawshank Redemption','P', 'Adventure','2014','GH₵20.00','New','This is a new movie','4', '9')
+RentMovies.addToStore('The Matrix','P', 'Romance','2013','GH₵10.00','New','This is an old movie','5', '9')
+RentMovies.addToStore('Pulp Fiction','P', 'Adventure','2019','GH₵45.00','New','This is an old movie','6', '9')
+RentMovies.addToStore('Ariel','P', 'Thriller','2015','GH₵20.00','Old','This is a new movie','7', '9')
+RentMovies.addToStore('Pulp Fiction','P', 'Adventure','2016','GH₵30.00','New','This is a new movie','8', '9')
+RentMovies.addToStore('Ariel','P', 'Action','2013','GH₵30.00','Old','This is an old movie','9', '9')
+RentMovies.addToStore('Jungle Story','P', 'Crime','2014','GH₵50.00','New','This is an old movie','10', '9')
 # Add customers to the store
-RentMovies.addCustomer(first_name = 'Alice', last_name = 'Mandy',age ='16',gender = 'Female',phone_number = '8458092682',customer_id = 0)
-RentMovies.addCustomer(first_name = 'Uma', last_name = 'Wendy',age ='24',gender = 'Female',phone_number = '7061293115',customer_id = 1)       
-RentMovies.addCustomer(first_name = 'Isabel', last_name = 'Vicky',age ='23',gender = 'Female',phone_number = '2310456043',customer_id = 2)    
-RentMovies.addCustomer(first_name = 'Alice', last_name = 'Yvonne',age ='14',gender = 'Female',phone_number = '7394355151',customer_id = 3)    
-RentMovies.addCustomer(first_name = 'Xavier', last_name = 'Bernard',age ='15',gender = 'Male',phone_number = '7488790731',customer_id = 4)    
-RentMovies.addCustomer(first_name = 'Ivan', last_name = 'Yvonne',age ='20',gender = 'Female',phone_number = '3342957117',customer_id = 5)     
-RentMovies.addCustomer(first_name = 'Uma', last_name = 'Terry',age ='19',gender = 'Female',phone_number = '3342957117',customer_id = 6)       
-RentMovies.addCustomer(first_name = 'Emma', last_name = 'Carter',age ='15',gender = 'Female',phone_number = '3342957117',customer_id = 7)     
-RentMovies.addCustomer(first_name = 'Jenny', last_name = 'Uma',age ='19',gender = 'Female',phone_number = '8458092682',customer_id = 8)       
-RentMovies.addCustomer(first_name = 'Xavier', last_name = 'Carter',age ='25',gender = 'Male',phone_number = '2310456043',customer_id = 9) 
+RentMovies.addCustomer('Henry', 'Bernard','25','Male', '1129083552', 0)
+RentMovies.addCustomer('Randy', 'Oscar','11','Male', '8675927194', 1)
+RentMovies.addCustomer('Mandy', 'Penny','20','Male', '4607835889', 2)
+RentMovies.addCustomer('Uma', 'Mandy','22','Male', '4607835889', 3)
+RentMovies.addCustomer('Quincy', 'Hannah','25','Male', '1749762630', 4)
+RentMovies.addCustomer('Grace', 'Oscar','19','Male', '1749762630', 5)
+RentMovies.addCustomer('Quincy', 'Quincy','12','Male', '1393601684', 6)
+RentMovies.addCustomer('David', 'Oscar','11','Female', '6977098783', 7)
+RentMovies.addCustomer('Fiona', 'Nancy','17','Female', '1393601684', 8)
+RentMovies.addCustomer('Mandy', 'Jenny','25','Male', '8675927194', 9)
 
 def InitialDisplay():
     print("Hello , Welcome to CinemaHouseX2")
