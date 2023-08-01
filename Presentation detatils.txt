@@ -1,0 +1,15 @@
+1. Introduction:
+ Purpose of Presentation of presentation. Description of problem and process of movie renatl store
+
+2. Explanation of classes: OOP classes used
+
+
+3.Functionality of the code
+
+4. Code metrics and what makes our code the best
+
+5.Future developments of the project
+
+
+
+
