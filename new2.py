@@ -1,3 +1,5 @@
+
+
 import sys
 from tabulate import tabulate
 
@@ -61,7 +63,9 @@ class Customer():
 
     def getDetails(self):
         return f"{self.FirstName},{ self.LastName} ,{str(self.Age)} , {self.Phone },{ self.CustomerId } ,{str(self.MoviePreferences)}"
-
+    
+    def __str__(self):
+        return f"{self.FirstName}"
 
 class RentalStore():
     # stores all movies , customers and rentals
@@ -89,7 +93,7 @@ class RentalStore():
     def removeCustomer(self, customer):
         self.Customers.remove(customer)
 
-         # 
+         
     def rent_movie(self, customer, movie):
         if movie in self.Movies_Store:
             self.Movies_Store.remove(movie)
@@ -97,11 +101,10 @@ class RentalStore():
                 self.RentalsDict[customer].append(movie)
             else:
                 self.RentalsDict[customer] = [movie]
-            return(f"{print(customer.getName)} rented '{movie.Title}' for '{movie.Price}' successfully!")
+            print(f"{customer.FirstName} rented '{movie.Title}' for '{movie.Price}' successfully!")
         else:
-            return(f"'{movie.Title}' is not available for rent.")
-
-
+            print(f"'{movie.Title}' is not available for rent.")
+    
     def return_movie(self, customer, movie_to_return):
         # Check if the customer has any movies rented
         if customer not in self.RentalsDict:
@@ -110,7 +113,7 @@ class RentalStore():
 
         elif customer in self.RentalsDict:
             # Find the returned movie in the rented movies list
-            rented_movies = self.rented_movies[customer]
+            rented_movies = self.RentalsDict[customer]
             found_copy = None
             for movie_copy in rented_movies:
                 if movie_copy.Title == movie_to_return.Title:
@@ -119,12 +122,12 @@ class RentalStore():
 
             if found_copy is not None:
                 # Add the returned movie copy back to the available movies list
-                self.movies_available.append(found_copy)
+                self.Movies_Store.append(found_copy)
                 # Remove the returned movie copy from the customer's rented movies
                 rented_movies.remove(found_copy)
-                print(f"{customer} returned '{found_copy.title}' successfully!")
+                print(f"{customer} returned '{found_copy.Title}' successfully!")
             else:
-                print(f"No movie with title '{movie_to_return.title}' is rented by {customer}.")
+                print(f"No movie with title '{movie_to_return.Title}' is rented by {customer}.")
     def add_bulk_movies(self,movies):
         for movie in movies:
             self.Movies.append(movie)
@@ -185,11 +188,11 @@ class RentalStore():
 RentMovies = RentalStore()
 
 # Add movies to the store
-RentMovies.addToStore('The Godfather','PG', 'Fantasy','2018','GH₵5.00','New','This is an old movie','1', '90%')
-RentMovies.addToStore('Ariel','P', 'Fantasy','2018','GH₵10.00','New','This is a new movie','2', '9')
-RentMovies.addToStore('Pulp Fiction','P', 'Adventure','2013','GH₵5.00','Old','This is an old movie','3', '9')
-RentMovies.addToStore('The Shawshank Redemption','P', 'Adventure','2014','GH₵20.00','New','This is a new movie','4', '9')
-RentMovies.addToStore('The Matrix','P', 'Romance','2013','GH₵10.00','New','This is an old movie','5', '9')
+RentMovies.addToStore('The Godfather','PG', 'Fantasy','2018','GH₵5.00','New','This is an old movie','1', '90%',num_copies=5)
+RentMovies.addToStore('Ariel','P', 'Fantasy','2018','GH₵10.00','New','This is a new movie','2', '9',num_copies=5)
+RentMovies.addToStore('Pulp Fiction','P', 'Adventure','2013','GH₵5.00','Old','This is an old movie','3', '9',num_copies=2)
+RentMovies.addToStore('The Shawshank Redemption','P', 'Adventure','2014','GH₵20.00','New','This is a new movie','4', '9',num_copies=2)
+RentMovies.addToStore('The Matrix','P', 'Romance','2013','GH₵10.00','New','This is an old movie','5', '9',num_copies=2)
 RentMovies.addToStore('Pulp Fiction','P', 'Adventure','2019','GH₵45.00','New','This is an old movie','6', '9')
 RentMovies.addToStore('Ariel','P', 'Thriller','2015','GH₵20.00','Old','This is a new movie','7', '9')
 RentMovies.addToStore('Pulp Fiction','P', 'Adventure','2016','GH₵30.00','New','This is a new movie','8', '9')
@@ -267,29 +270,35 @@ def DisplayCustomers():
     print("Customer List:")
     RentMovies.getCustomers()
 
-
+# ... (existing code) ...
 
 def RentMovie():
     print("Please select a movie from the list below")
     DisplayMovies()
     movieChoice = input("What is your choice: ")
-    print("Please select a customer from the list below")
-    RentMovies.getCustomers()
-    customerChoice = int(input("What is your choice: "))
 
     # Find the selected movie in the list
     selected_movie = next((movie for movie in RentMovies.Movies_Store if movie.Title == movieChoice), None)
     if selected_movie is None:
         print(f"'{movieChoice}' not found in the movie list.")
         return
-    #Find the selected customer in the list
-    selected_customer = next((customer for customer in RentMovies.Customers if customer.CustomerId == customerChoice ), None)
+
+    print("Please select a customer from the list below")
+    RentMovies.getCustomers()
+    try:
+        customerChoice = int(input("What is your choice: "))
+    except ValueError:
+        print("Invalid input. Please enter a valid customer ID.")
+        return
+
+    # Find the selected customer in the list
+    selected_customer = next((customer for customer in RentMovies.Customers if customer.CustomerId == customerChoice), None)
     if selected_customer is None:
-        print(f"'{customerChoice}' not found in the movie list.")
+        print(f"Customer with ID '{customerChoice}' not found in the customer list.")
         return
 
     # Rent the selected movie to the selected customer with the movie's price
-    print(RentMovies.rent_movie(selected_customer, selected_movie))
+    RentMovies.rent_movie(selected_customer, selected_movie)
     print("Movie Rented")
 
 
@@ -300,13 +309,17 @@ def AddPreference():
 
     print("Please select a customer from the list below")
     RentMovies.getCustomers()
-    customerChoice = int(input("What is your choice: "))
+    try:
+        customerChoice = int(input("What is your choice: "))
+    except ValueError:
+        print("Invalid input. Please enter a valid customer ID.")
+        return
 
     # Find the customer with the specified customer ID
     customer = next((c for c in RentMovies.Customers if c.CustomerId == customerChoice), None)
 
     if customer is None:
-        print("Customer not found.")
+        print(f"Customer with ID '{customerChoice}' not found.")
         return
 
     print("Please enter the rating of the movie")
@@ -320,29 +333,47 @@ def AddPreference():
     customer.addMoviePreference(movieChoice, genre, year, rating)
     print("Preference added")
 
-
-
 def ReturnMovie():
     print("Please select a movie from the list below")
     DisplayMovies()
     movieChoice = input("What is your choice: ")
-    if movieChoice not in RentMovies.Movies:
-        raise ValueError("Movie not found")
-    print("Please select a customer from the list below")
-    DisplayCustomers()
-    customerChoice = input("What is your choice: ")
-    if customerChoice not in RentMovies.Customers:
-        raise ValueError("Customer not found")
+
+    # Find the selected movie in the list
+    selected_movie = next((movie for movie in RentMovies.Movies_Store if movie.Title == movieChoice), None)
+    if selected_movie is None:
+        print(f"'{movieChoice}' not found in the movie list.")
+        return
     
-    RentMovies.returnMovie(movieChoice,customerChoice)
+    print("Please select a customer from the list below")
+    RentMovies.getCustomers()
+    try:
+        customerChoice = int(input("What is your choice: "))
+    except ValueError:
+        print("Invalid input. Please enter a valid customer ID.")
+        return
+
+    # Find the selected customer in the list
+    selected_customer = next((customer for customer in RentMovies.Customers if customer.CustomerId == customerChoice), None)
+    if selected_customer is None:
+        print(f"Customer with ID '{customerChoice}' not found in the customer list.")
+        return
+
+    RentMovies.return_movie(selected_customer, selected_movie)
     print("Movie Returned")
 
 def exit():
     print("Goodbye")
     sys.exit()
 
+    # def main():
+    #     InitialDisplay()
 def main():
-    InitialDisplay()
+    while True:
+        InitialDisplay()
+        user_input = input("Do you want to continue? (yes/no): ")
+        if user_input.lower() == 'no':
+            print("Goodbye")
+            break
 
 
 if __name__ == "__main__":

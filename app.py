@@ -209,19 +209,6 @@ RentMovies.addCustomer('Mandy', 'Jenny','25','Male', '8675927194', 9)
 
 
 
-
-
-def InitialDisplay():
-    print("Hello , Welcome to CinemaHouseX2")
-    type = chooseWhoYouAre()
-    if type == 1:
-        CustomerDisplay()
-    elif type == 2:
-        adminDisplay()
-    else:
-        sys.exit()
-
-
 def CustomerDisplay():
     print("Hello Customer, Welcome to CinemaHouseX2")
     print("Please select an option from the menu below")
@@ -229,6 +216,7 @@ def CustomerDisplay():
     print("2. Rent a movie")
     print("3. Return a movie")
     print("4. Add preference")
+    print("5. Exit")
     userInput = int(input("What is your choice: "))
     if userInput == 1:
             DisplayMovies()
@@ -238,6 +226,8 @@ def CustomerDisplay():
             ReturnMovie()
     elif userInput== 4:
             AddPreference()
+    elif userInput == 5:
+         running1 = False
     
 
 def adminDisplay():
@@ -245,12 +235,14 @@ def adminDisplay():
     print("Please select an option from the menu below")
     print("1. Display all movies")
     print("2. Display all customers")
+    print("3. Add movies ")
     userInput = int(input("What is your choice: "))
     if userInput == 1:
             DisplayMovies()
     elif userInput == 2:
             DisplayCustomers()
 
+runing = 1
 def chooseWhoYouAre():
     print("Who are you? ")
     print("1. Customer")
@@ -259,6 +251,7 @@ def chooseWhoYouAre():
     userInput = int(input("What is your choice: "))
     return userInput
 
+
 def DisplayMovies():
     print("Movie List:")
     RentMovies.getMovies()
@@ -266,8 +259,6 @@ def DisplayMovies():
 def DisplayCustomers():
     print("Customer List:")
     RentMovies.getCustomers()
-
-
 
 def RentMovie():
     print("Please select a movie from the list below")
@@ -291,7 +282,6 @@ def RentMovie():
     # Rent the selected movie to the selected customer with the movie's price
     print(RentMovies.rent_movie(selected_customer, selected_movie))
     print("Movie Rented")
-
 
 def AddPreference():
     print("Please select a movie from the list below")
@@ -320,8 +310,6 @@ def AddPreference():
     customer.addMoviePreference(movieChoice, genre, year, rating)
     print("Preference added")
 
-
-
 def ReturnMovie():
     print("Please select a movie from the list below")
     DisplayMovies()
@@ -337,13 +325,26 @@ def ReturnMovie():
     RentMovies.returnMovie(movieChoice,customerChoice)
     print("Movie Returned")
 
-def exit():
-    print("Goodbye")
-    sys.exit()
+def exit(var,value):
+     var = value 
+     return var 
 
 def main():
     InitialDisplay()
 
+while running == True :
+    
+    def InitialDisplay():
+        print("Hello , Welcome to CinemaHouseX2")
+        type = chooseWhoYouAre()
+        if type == 1:
+            running1 = True
+            while running1 == True:
+                  CustomerDisplay()
+        elif type == 2:
+            adminDisplay()
+        else:
+            running == False
 
 if __name__ == "__main__":
     main()
