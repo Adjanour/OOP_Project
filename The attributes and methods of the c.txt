@@ -1,0 +1,60 @@
+The attributes and methods of the classes are as follows:
+
+**Movie class:**
+Attributes:
+- Title
+- Rating
+- Genre
+- Year
+- Price
+- Tag
+- Description
+- MovieId
+- Ratings
+
+Methods:
+- `__init__(self, title, rating, genre, year, price, tag, description, movieid, ratings)`: Constructor to initialize the attributes of the `Movie` class.
+- `getMovieDetails(self)`: Method to get the details of the movie as a formatted string.
+- `getPrice(self)`: Method to get the price of the movie as a float.
+- `__str__(self)`: Method to return a string representation of the movie.
+
+**Customer class:**
+Attributes:
+- CustomerId
+- FirstName
+- LastName
+- Age
+- Gender
+- Phone
+- MoviePreferences
+- ShoppingCart
+
+Methods:
+- `__init__(self, first_name, last_name, age, gender, phone, customerid)`: Constructor to initialize the attributes of the `Customer` class.
+- `getCustomerDetails(self)`: Method to get the customer details as a tuple.
+- `getFullName(self)`: Method to get the full name of the customer as a string.
+- `addMoviePreference(self, title, genre, year, rating)`: Method to add a movie preference for the customer.
+- `removeMoviePreference(self, title)`: Method to remove a movie preference for the customer based on the title.
+- `getID(self)`: Method to get the customer ID.
+- `getName(self)`: Method to get the full name of the customer as a string.
+- `getMoviePrefences(self)`: Method to get the list of movie preferences for the customer.
+- `getDetails(self)`: Method to get the customer details as a formatted string.
+
+**RentalStore class:**
+Attributes:
+- Movies_Store
+- Customers
+- RentalsDict
+
+Methods:
+- `__init__(self, Movies=None)`: Constructor to initialize the attributes of the `RentalStore` class.
+- `addToStore(self, title=None, rating=None, genre=None, year=None, price=None, tag=None, description=None, movieid=None, ratings=None, movie=None, num_copies=None)`: Method to add movies to the store or bulk add copies of a movie.
+- `removeFromStore(self, movie)`: Method to remove a movie from the store.
+- `addCustomer(self, firstName, lastName, age, gender, phone, customerid)`: Method to add a customer to the store.
+- `removeCustomer(self, customer)`: Method to remove a customer from the store.
+- `rent_movie(self, customer, movie)`: Method to rent a movie to a customer.
+- `return_movie(self, customer, movie_to_return)`: Method to return a movie rented by a customer.
+- `add_bulk_movies(self, movies)`: Method to bulk add movies to the store.
+- `getMovies(self)`: Method to display all movies in the store in a tabular format.
+- `getCustomers(self)`: Method to display all customers in the store in a tabular format.
+- `get_total_number_of_movies(self)`: Method to get the total number of movies in the store.

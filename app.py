@@ -1,6 +1,7 @@
 import sys
 from tabulate import tabulate
 
+runing = 1
 class Movie():
     def __init__(self, title, rating, genre, year, price, tag, description, movieid,ratings):
         self.Title = title
@@ -227,7 +228,7 @@ def CustomerDisplay():
     elif userInput== 4:
             AddPreference()
     elif userInput == 5:
-         running1 = False
+            running1 = False
     
 
 def adminDisplay():
@@ -327,14 +328,9 @@ def ReturnMovie():
 
 def exit(var,value):
      var = value 
-     return var 
+     return var
 
-def main():
-    InitialDisplay()
-
-while running == True :
-    
-    def InitialDisplay():
+def InitialDisplay():
         print("Hello , Welcome to CinemaHouseX2")
         type = chooseWhoYouAre()
         if type == 1:
@@ -344,7 +340,15 @@ while running == True :
         elif type == 2:
             adminDisplay()
         else:
-            running == False
+            running == False 
+
+def main():
+    running = True
+    while running == True :
+        InitialDisplay()
+
+
+    
 
 if __name__ == "__main__":
     main()
